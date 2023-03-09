@@ -1,6 +1,8 @@
 import React from "react";
 
-function Sidebar({ journal, addNote, deleteEntry }) {
+
+
+function Sidebar({ journal, addNote, deleteEntry, activeNote, setActiveNote }) {
   return (
     <div>
       <div className="header">
@@ -10,7 +12,8 @@ function Sidebar({ journal, addNote, deleteEntry }) {
       <div className="notes">
         {/* maps through the array of journal to display information on each individual entry */}
         {journal.map((entry) => (
-          <div className="notes">
+          <div className={`app-sidebar-note ${entry.id === activeNote && 'active'}`}onClick ={()=>setActiveNote(entry.id)}>
+            
             <div className="title">
               <strong>{entry.title}</strong>
               <button onClick={() => deleteEntry(entry.id)}> Delete </button>
