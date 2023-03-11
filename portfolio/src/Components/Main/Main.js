@@ -1,5 +1,5 @@
-import React from "react";
 import ReactMarkdown from "react-markdown";
+import './main.css';
 
 function Main({ activeNote, update }) {
   // to display on the screen when no jounal entry has been made yet

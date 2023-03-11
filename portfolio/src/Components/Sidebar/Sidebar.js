@@ -1,6 +1,7 @@
-import React from "react";
-
+import './Sidebar.css'
 function Sidebar({ journal, addNote, deleteEntry, activeNote, setActiveNote }) {
+
+  // to sort on edit 
   const sortJournal = journal.sort((a, b) => b.lastModified - a.lastModified);
   return (
     <div className="app-sidebar">
@@ -21,7 +22,7 @@ function Sidebar({ journal, addNote, deleteEntry, activeNote, setActiveNote }) {
               <strong>{entry.title}</strong>
               <button onClick={() => deleteEntry(entry.id)}> Delete </button>
             </div>
-            <p> {entry.body && entry.body.substr(0, 50) + "..."} </p>
+            <p> {entry.body.substr(0, 50) + "..."} </p>
             <small className="note-meta">
               {new Date(entry.lastModified).toLocaleDateString("en-GB", {
                 hour: "2-digit",

@@ -46,8 +46,9 @@ function App() {
   };
 
   // handles deleting a journal entry
-  const deleteEntry = (idToDelete) => {
-    setJournal(journal.filter((entry) => entry.id !== idToDelete));
+  const deleteEntry = (id) => {
+    const deleteJournal = journal.filter((entry) => entry.id !== id);
+    setJournal(deleteJournal)
   };
 
   // to select the journal entry you're currently working on
