@@ -1,4 +1,4 @@
-import './Sidebar.css'
+import './Sidebar.css';
 function Sidebar({ journal, addNote, deleteEntry, activeNote, setActiveNote }) {
 
   // to sort on edit 
