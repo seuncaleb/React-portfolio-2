@@ -1,8 +1,10 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
 
 function Main({ activeNote, update }) {
   // to display on the screen when no jounal entry has been made yet
-  if (!activeNote) return <div className="no-active-note">No Active Note</div>;
+  if (!activeNote)
+    return <div className="no-active-note">No saved memories yet</div>;
 
   // to handle input in text area
   const onEdit = (key, value) => {
@@ -31,7 +33,10 @@ function Main({ activeNote, update }) {
       </div>
       <div className="app-main-note-preview">
         <h1 className="preview-title">{activeNote.title}</h1>
-        <div className="markdown-preview">{activeNote.body} </div>
+        <ReactMarkdown
+          className="markdown-preview"
+          children={activeNote.body}
+        />
       </div>
     </div>
   );

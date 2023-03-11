@@ -1,25 +1,28 @@
 import React from "react";
 
-
-
 function Sidebar({ journal, addNote, deleteEntry, activeNote, setActiveNote }) {
+  const sortJournal = journal.sort((a, b) => b.lastModified - a.lastModified);
   return (
-    <div>
-      <div className="header">
-        <h1> NOTES </h1>
+    <div className="app-sidebar">
+      <div className="app-sidebar-header">
+        <h1> Keep those memories </h1>
         <button onClick={addNote}> Add</button>
       </div>
-      <div className="notes">
+      <div className="app-sidebar-notes">
         {/* maps through the array of journal to display information on each individual entry */}
-        {journal.map((entry) => (
-          <div className={`app-sidebar-note ${entry.id === activeNote && 'active'}`}onClick ={()=>setActiveNote(entry.id)}>
-            
-            <div className="title">
+        {sortJournal.map((entry) => (
+          <div
+            className={`app-sidebar-note ${
+              entry.id === activeNote && "active"
+            }`}
+            onClick={() => setActiveNote(entry.id)}
+          >
+            <div className="sidebar-note-title">
               <strong>{entry.title}</strong>
               <button onClick={() => deleteEntry(entry.id)}> Delete </button>
             </div>
             <p> {entry.body && entry.body.substr(0, 50) + "..."} </p>
-            <small className="meta">
+            <small className="note-meta">
               {new Date(entry.lastModified).toLocaleDateString("en-GB", {
                 hour: "2-digit",
                 minute: "2-digit",

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import uuid from "react-uuid";
 import "./App.css";
 import Main from "./Components/Main/Main";
@@ -6,8 +6,16 @@ import Sidebar from "./Components/Sidebar/Sidebar";
 
 function App() {
   // set states to be used in both main and sidebar
-  const [journal, setJournal] = useState([]);
-const [activeNote, setActiveNote] = useState(false)
+  const [journal, setJournal] = useState(
+    JSON.parse(localStorage.journal) || []
+  );
+  const [activeNote, setActiveNote] = useState(false);
+
+  // to store inpute in local storage to parse on refresh
+
+  useEffect(() => {
+    localStorage.setItem("journal", JSON.stringify(journal));
+  }, [journal]);
 
   // function to serve on click adding note to the side bar
   const addNote = () => {
@@ -24,18 +32,17 @@ const [activeNote, setActiveNote] = useState(false)
     console.log("I just made a new journal entry");
   };
 
-  // to handle entry in selected journal entry 
-  const update = (updatedEntry)=>{
-
-    const updatedJournal = journal.map((entry)=>{
-      if (entry.id === activeNote){
-        return updatedEntry
+  // to handle entry in selected journal 
+  const update = (updatedEntry) => {
+    const updatedJournal = journal.map((entry) => {
+      if (entry.id === activeNote) {
+        return updatedEntry;
       }
 
-      return entry
-    })
+      return entry;
+    });
 
-    setJournal(updatedJournal)
+    setJournal(updatedJournal);
   };
 
   // handles deleting a journal entry
@@ -43,27 +50,22 @@ const [activeNote, setActiveNote] = useState(false)
     setJournal(journal.filter((entry) => entry.id !== idToDelete));
   };
 
+  // to select the journal entry you're currently working on
+  const getActiveNote = () => {
+    return journal.find((entry) => entry.id === activeNote);
+  };
 
-  // to select the journal entry you're currently working on 
-const getActiveNote = () => {
-
-  return journal.find((entry)=> entry.id === activeNote);
-
-}
-
-  
-return (
+  return (
     <div className="App">
       <Sidebar
         journal={journal}
         addNote={addNote}
         deleteEntry={deleteEntry}
-        activeNote ={activeNote}
-        setActiveNote ={setActiveNote}
-      
+        activeNote={activeNote}
+        setActiveNote={setActiveNote}
       />
 
-      <Main activeNote = {getActiveNote()}  update={update}/>
+      <Main activeNote={getActiveNote()} update={update} />
     </div>
   );
 }
