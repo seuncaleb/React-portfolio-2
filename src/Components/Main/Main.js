@@ -37,6 +37,7 @@ function Main({ activeNote, update }) {
           className="markdown-preview"
           children={activeNote.body}
         />
+       
       </div>
     </div>
   );
