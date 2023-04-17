@@ -12,3 +12,8 @@ Hosted on netlify at[secretjouurnal.netlify.app](secretjouurnal.netlify.app)
 * React
 * BootStrap 
 * Local Storage
+
+### Project Screenshot 
+
+![screenshot](./public/images/4.png)
+
