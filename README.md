@@ -4,7 +4,7 @@ This is a journal entry app that allows users store information, thoughts, and s
 
 
  ### Link
-Hosted on netlify at [secretjouurnal.netlify.app](secretjouurnal.netlify.app)
+Hosted on netlify at [secretjouurnal.netlify.app](https://secretjouurnal.netlify.app/)
 
 ### Tech Used
 * HTML / CSS
